@@ -7,7 +7,7 @@
   <Version>1.0.0.0</Version>
   <ProviderName>Prediction Laboratory</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Viz Lab Task Pane Add-in"/>
+  <DisplayName DefaultValue="Viz Task Pane Add-in"/>
   <Description DefaultValue="A template to get started."/>
   <IconUrl DefaultValue="https://localhost:3002/assets/icon-32.png"/>
   <HighResolutionIconUrl DefaultValue="https://localhost:3002/assets/icon-64.png"/>

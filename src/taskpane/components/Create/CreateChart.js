@@ -24,17 +24,25 @@ async function getSelected() {
 function testPlotly() {
   try {
     // testing plotly
+
     const TESTER = document.getElementById('tester');
+    var config = {
+      showLink: true,
+      plotlyServerURL: "https://chart-studio.plotly.com"
+    };
+
     Plotly.newPlot( TESTER, [{
     x: [1, 2, 3, 4, 5],
     y: [1, 2, 4, 8, 16] }], {
-    margin: { t: 0 } } );
+    margin: { t: 0 } },
+    config );
   } catch (error) {
     console.log('Error', error)
   }
 }
 
 function plotlyResponsive() {
+  
   var trace1 = {
     type: 'bar',
     x: [1, 2, 3, 4],
@@ -53,8 +61,12 @@ function plotlyResponsive() {
     title: 'Responsive to window\'s size!',
     font: {size: 18}
   };
-  
-  var config = {responsive: true}
+
+  var config = {
+    showLink: true,
+    plotlyServerURL: "https://chart-studio.plotly.com",
+    responsive: true,
+  };
   
   Plotly.newPlot('tester', data, layout, config );
 }

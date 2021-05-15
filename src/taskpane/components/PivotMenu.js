@@ -3,6 +3,7 @@ import { Label } from "office-ui-fabric-react/lib/Label";
 import { Pivot, PivotItem } from "office-ui-fabric-react/lib/Pivot";
 import User from "./User/index";
 import CreateChart from './Create/index'
+import ViewChart from './View/index'
 import HomeHelpPanel from "./HelpPanels/UserHelp";
 import CreateHelpPanel from "./HelpPanels/CreateHelp";
 import firebase from "firebase";
@@ -49,6 +50,17 @@ export default function PivotMenu() {
             <CreateHelpPanel />
           </div>
           <CreateChart />
+        </PivotItem>
+        <PivotItem
+          headerText="View"
+          headerButtonProps={{
+            disabled: !loggedIn
+          }}
+        >
+          <div className="pivot-head">
+            <Label>View Chart</Label>
+          </div>
+          <ViewChart />
         </PivotItem>
       </Pivot>
     </div>
