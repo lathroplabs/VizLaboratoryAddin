@@ -7,6 +7,7 @@ export default function CreateChart() {
       <hr className="rounded"></hr>
       <CreateChartButton />
       <hr className="rounded"></hr>
+      <div id="tester" style={{width: 300, height: 200}}></div>
     </>
   );
 }

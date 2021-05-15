@@ -5,7 +5,7 @@ export default function CreateChartButton() {
   return (
     <div className="centered">
       <Label>Create Chart </Label>
-      <PrimaryButton text="Create" onClick={getSelected} allowDisabledFocus />
+      <PrimaryButton text="Create" onClick={testPlotly} allowDisabledFocus />
     </div>
   );
 }
@@ -18,4 +18,18 @@ async function getSelected() {
     const chartData = range.values
     console.log('chart data', chartData)
   });
+  
+}
+
+function testPlotly() {
+  try {
+    // testing plotly
+    const TESTER = document.getElementById('tester');
+    Plotly.newPlot( TESTER, [{
+    x: [1, 2, 3, 4, 5],
+    y: [1, 2, 4, 8, 16] }], {
+    margin: { t: 0 } } );
+  } catch (error) {
+    console.log('Error', error)
+  }
 }
