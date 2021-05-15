@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Label } from "office-ui-fabric-react/lib/Label";
 import { Pivot, PivotItem } from "office-ui-fabric-react/lib/Pivot";
 import User from "./User/index";
-import CreateChartButton from './Create/CreateChart'
+import CreateChart from './Create/index'
 import HomeHelpPanel from "./HelpPanels/UserHelp";
 import CreateHelpPanel from "./HelpPanels/CreateHelp";
 import firebase from "firebase";
@@ -45,10 +45,10 @@ export default function PivotMenu() {
           }}
         >
           <div className="pivot-head">
-            <Label>Create a New Model</Label>
+            <Label>Create Chart</Label>
             <CreateHelpPanel />
           </div>
-          <CreateChartButton />
+          <CreateChart />
         </PivotItem>
       </Pivot>
     </div>

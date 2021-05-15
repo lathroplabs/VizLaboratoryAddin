@@ -11,5 +11,11 @@ export default function CreateChartButton() {
 }
 
 async function getSelected() {
-  console.log('Select Chart')
+  await Excel.run(async context => {
+    var range = context.workbook.getSelectedRange();
+    range.load("values");
+    await context.sync();
+    const chartData = range.values
+    console.log('chart data', chartData)
+  });
 }
