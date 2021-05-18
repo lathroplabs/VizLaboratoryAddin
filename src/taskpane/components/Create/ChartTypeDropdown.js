@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { Dropdown } from "office-ui-fabric-react/lib/Dropdown";
 import { scatterBasic } from "../../chartConfigs/scatter";
 
-export default function ChartTypeDropdown() {
+export default function ChartTypeDropdown({setChartType}) {
   
-  const templates = [scatterBasic];
+  const templates = {
+    "ScatterBasic": scatterBasic,
+    "ScatterBasic2": scatterBasic,
+  };
 
   const chartTypeOptions = [
     { key: "ScatterBasic", text: "Basic Scatter Plot" },
@@ -24,7 +27,9 @@ export default function ChartTypeDropdown() {
   );
 
   function handleChoice(ev, option) {
-    const chartType = option["key"];
-    console.log('chart type selected', chartType)
+    const chartTypeKey = option["key"];
+    const chart_type = templates[chartTypeKey]
+    setChartType(chart_type)
+    //console.log('chart type selected', chartType)
   }
 }

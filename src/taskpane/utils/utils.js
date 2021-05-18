@@ -36,7 +36,7 @@ export async function selectionToDF() {
   }
 }
 
-export function getTraces(df, type) {
+export function getTraces(df, type, mode) {
   const x = df.iloc({columns: ["0"]}).data.flat()
   const cols = df.columns.slice(1)
   let traces = []
@@ -46,6 +46,7 @@ export function getTraces(df, type) {
     y: y,
     x: x,
     type: type,
+    mode: mode,
     name: col
   }
   traces.push(trace)
