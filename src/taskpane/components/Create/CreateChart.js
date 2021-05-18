@@ -6,7 +6,7 @@ import ChartTypeDropdown from './ChartTypeDropdown';
 
 export default function CreateChartButton() {
   const { chartFig, setChartFig } = useContext(ChartFigContext);
-  const [chartType, setChartType] = useState(false);
+  const [chartTemplate, setChartTemplate] = useState({});
 
   let layout = { 
     title: 'Chart Title',
@@ -29,10 +29,10 @@ export default function CreateChartButton() {
   return (
     <div className="centered">
       <Label>Create Chart </Label>
-      <ChartTypeDropdown setChartType={setChartType} />
-      <TextField label="Chart Title" id="title-input" />
-      <TextField label="X Axis Label" id="x-label-input" />
-      <TextField label="Y Axis Label" id="y-label-input" />
+      <ChartTypeDropdown setChartTemplate={setChartTemplate} />
+      <TextField label="Chart Title" id="title-input" defaultValue={chartFig ? chartFig.layout.title.text : ""} />
+      <TextField label="X Axis Label" id="x-label-input" defaultValue={chartFig ? chartFig.layout.xaxis.title.text : ""} />
+      <TextField label="Y Axis Label" id="y-label-input" defaultValue={chartFig ? chartFig.layout.yaxis.title.text : ""} />
       <PrimaryButton text="Create" onClick={updateChartFig} allowDisabledFocus />
     </div>
   );
@@ -47,8 +47,8 @@ export default function CreateChartButton() {
     layout.xaxis.title = chartXLabel
     layout.yaxis.title = chartYLabel
     
-    const traceType = chartType.type
-    const traceMode = chartType.mode
+    const traceType = chartTemplate.type
+    const traceMode = chartTemplate.mode
     const df = await selectionToDF()
     const data = getTraces(df, traceType, traceMode)
   
