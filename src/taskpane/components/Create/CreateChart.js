@@ -1,25 +1,30 @@
 import React from "react";
 import { PrimaryButton, Label } from "office-ui-fabric-react";
+import { arrayToJSONObject } from "../../utils/utils";
 
 export default function CreateChartButton() {
   return (
     <div className="centered">
       <Label>Create Chart </Label>
-      <PrimaryButton text="Create" onClick={plotlyResponsive} allowDisabledFocus />
+      <PrimaryButton text="Create" onClick={getSelected} allowDisabledFocus />
     </div>
   );
+
+  async function getSelected() {
+    console.log('in getSelected')
+    await Excel.run(async context => {
+      var range = context.workbook.getSelectedRange();
+      range.load("values");
+      await context.sync();
+      const chartData = range.values
+      const jsonData = arrayToJSONObject(chartData);
+      const df = new dfd.DataFrame(jsonData);
+      console.log('chart data', df)
+      
+    });
+  }
 }
 
-async function getSelected() {
-  await Excel.run(async context => {
-    var range = context.workbook.getSelectedRange();
-    range.load("values");
-    await context.sync();
-    const chartData = range.values
-    console.log('chart data', chartData)
-  });
-  
-}
 
 function testPlotly() {
   try {
@@ -42,7 +47,8 @@ function testPlotly() {
 }
 
 function plotlyResponsive() {
-  
+  console.log('in getSelected')
+  const TESTER = document.getElementById('tester');
   var trace1 = {
     type: 'bar',
     x: [1, 2, 3, 4],
@@ -68,5 +74,5 @@ function plotlyResponsive() {
     responsive: true,
   };
   
-  Plotly.newPlot('tester', data, layout, config );
+  Plotly.newPlot(TESTER, data, layout, config );
 }
