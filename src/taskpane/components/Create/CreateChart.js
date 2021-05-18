@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { PrimaryButton, Label } from "office-ui-fabric-react";
 import ChartFigContext from "../../chartFigs/ChartFigContext";
-import { arrayToJSONObject } from "../../utils/utils";
+import { selectionToDF, getTraces } from "../../utils/utils";
 
 export default function CreateChartButton() {
   const { chartFig, setChartFig } = useContext(ChartFigContext);
@@ -14,46 +14,16 @@ export default function CreateChartButton() {
   );
 
   async function getSelected() {
-    console.log('in getSelected')
-    await Excel.run(async context => {
-      var range = context.workbook.getSelectedRange();
-      range.load("values");
-      await context.sync();
-      const chartData = range.values
-      const jsonData = arrayToJSONObject(chartData);
-      const df = new dfd.DataFrame(jsonData);
-      console.log('chart data', df)
-      
-    });
-  }
+    const df = await selectionToDF()
+    const data = getTraces(df, 'bar')
+    console.log('data', data)
+    }
 
-  function plotlyResponsive() {
+  async function plotlyResponsive() {
+    const df = await selectionToDF()
+    const data = getTraces(df, 'bar')
     
-    const TESTER = document.getElementById('tester');
-    var trace1 = {
-      y: [8, 54, 93, 116, 137, 184],
-      x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-      mode: 'lines',
-      name: 'Bears'
-    };
-    
-    var trace2 = {
-      y: [150, 77, 32, 11, 6, 1],
-      x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-      mode: 'lines',
-      name: 'Dolphins'
-    };
-    
-    var trace3 = {
-      y: [80, 54, 100, 76, 93, 72],
-      x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-      mode: 'lines',
-      name: 'Whales'
-    };
-    
-    var data = [ trace1, trace2, trace3 ];
-    
-    var layout = { 
+    const layout = { 
       title: 'Chart Title',
       xaxis: {
         title: 'month'
@@ -64,8 +34,7 @@ export default function CreateChartButton() {
       font: {size: 16}
     };
   
-    var config = {
-      //showLink: true,
+    const config = {
       plotlyServerURL: "https://chart-studio.plotly.com",
       responsive: true,
       modeBarButtonsToRemove: ['toImage'],
@@ -79,8 +48,6 @@ export default function CreateChartButton() {
     }
   
     setChartFig(fig)
-    
-    //Plotly.plot(TESTER, fig );
   }
 }
 

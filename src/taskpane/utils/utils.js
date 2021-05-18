@@ -18,3 +18,38 @@ export function arrayToJSONObject(arr) {
   return formatted;
 }
 
+export async function selectionToDF() {
+  try {
+    let df
+    await Excel.run(async context => {
+      var range = context.workbook.getSelectedRange();
+      range.load("values");
+      await context.sync();
+      const chartData = range.values
+      const jsonData = arrayToJSONObject(chartData);
+      df = new dfd.DataFrame(jsonData);
+    });
+    
+    return df
+  } catch (error) {
+    console.log('Error', error)
+  }
+}
+
+export function getTraces(df, type) {
+  const x = df.iloc({columns: ["0"]}).data.flat()
+  const cols = df.columns.slice(1)
+  let traces = []
+  cols.forEach(col => {
+  const y = df.loc({columns: [col]}).data.flat()
+  const trace = {
+    y: y,
+    x: x,
+    type: type,
+    name: col
+  }
+  traces.push(trace)
+})
+
+return traces
+}
