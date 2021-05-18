@@ -1,10 +1,12 @@
 export const barBasic = {
-  mode: '',
-  type: 'bar',
+  trace: {
+    type: 'bar'
+  }
 }
 
 export const barStacked ={
-  mode: '',
-  type: 'bar',
+  trace: {
+    type: 'bar'
+  },
   layout: {barmode: 'stack'}
 }

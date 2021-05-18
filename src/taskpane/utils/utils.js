@@ -36,17 +36,16 @@ export async function selectionToDF() {
   }
 }
 
-export function getTraces(df, type, mode) {
+export function getTraces(df, traceTemplate) {
   const x = df.iloc({columns: ["0"]}).data.flat()
   const cols = df.columns.slice(1)
   let traces = []
   cols.forEach(col => {
   const y = df.loc({columns: [col]}).data.flat()
   const trace = {
+    ...traceTemplate,
     y: y,
     x: x,
-    type: type,
-    mode: mode,
     name: col
   }
   traces.push(trace)

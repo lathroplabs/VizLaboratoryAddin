@@ -54,10 +54,9 @@ export default function CreateChartButton() {
       }
     }
     
-    const traceType = chartTemplate.type
-    const traceMode = chartTemplate.mode
+    const trace = chartTemplate.trace
     const df = await selectionToDF()
-    const data = getTraces(df, traceType, traceMode)
+    const data = getTraces(df, trace)
   
     const fig = {
       data: data,

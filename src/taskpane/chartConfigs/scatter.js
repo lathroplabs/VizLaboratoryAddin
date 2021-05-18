@@ -1,5 +1,6 @@
 export const scatterBasic = {
-  mode: 'markers',
-  type: 'scatter',
-  
+  trace: {
+    mode: 'markers',
+    type: 'scatter'
+  }
 }

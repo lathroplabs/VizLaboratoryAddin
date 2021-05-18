@@ -1,4 +1,6 @@
 export const lineBasic = {
-  mode: 'lines',
-  type: 'line',
+  trace: {
+    mode: 'lines',
+    type: 'line',
+  }
 }
