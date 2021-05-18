@@ -46,6 +46,13 @@ export default function CreateChartButton() {
     layout.title = chartTitle
     layout.xaxis.title = chartXLabel
     layout.yaxis.title = chartYLabel
+
+    if (chartTemplate.layout) {
+      layout = {
+        ...layout,
+        ...chartTemplate.layout
+      }
+    }
     
     const traceType = chartTemplate.type
     const traceMode = chartTemplate.mode
