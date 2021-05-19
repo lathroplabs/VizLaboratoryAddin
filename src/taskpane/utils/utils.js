@@ -36,7 +36,7 @@ export async function selectionToDF() {
   }
 }
 
-export function getTraces(df, traceTemplate) {
+export function getTraces(df, traceTemplate, horizontal=false) {
   const x = df.iloc({columns: ["0"]}).data.flat()
   const cols = df.columns.slice(1)
   let traces = []
@@ -45,8 +45,8 @@ export function getTraces(df, traceTemplate) {
   //TODO add a flag to transpose data for horizontal charts
   const trace = {
     ...traceTemplate,
-    y: y,
-    x: x,
+    y: horizontal ? x : y,
+    x: horizontal ? y : x,
     name: col
   }
   traces.push(trace)
