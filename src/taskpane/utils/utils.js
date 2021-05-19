@@ -42,6 +42,7 @@ export function getTraces(df, traceTemplate) {
   let traces = []
   cols.forEach(col => {
   const y = df.loc({columns: [col]}).data.flat()
+  //TODO add a flag to transpose data for horizontal charts
   const trace = {
     ...traceTemplate,
     y: y,

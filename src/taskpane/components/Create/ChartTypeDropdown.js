@@ -2,7 +2,9 @@ import React, { useContext } from "react";
 import { Dropdown } from "office-ui-fabric-react/lib/Dropdown";
 import { scatterBasic } from "../../chartConfigs/scatter";
 import { lineBasic } from "../../chartConfigs/line";
-import { barBasic, barStacked } from "../../chartConfigs/bar";
+import { barBasic, barHorizontal, barStacked, barGrouped } from "../../chartConfigs/bar";
+import { stackedArea } from "../../chartConfigs//area";
+
 
 export default function ChartTypeDropdown({setChartTemplate}) {
   
@@ -10,14 +12,20 @@ export default function ChartTypeDropdown({setChartTemplate}) {
     "ScatterBasic": scatterBasic,
     "LineBasic": lineBasic,
     "BarBasic": barBasic,
-    "BarStacked": barStacked
+    "BarHorizontal": barHorizontal,
+    "BarStacked": barStacked,
+    "BarGrouped": barGrouped,
+    "StackedArea": stackedArea
   };
 
   const chartTypeOptions = [
     { key: "ScatterBasic", text: "Basic Scatter Plot" },
     { key: "LineBasic", text: "Basic Line Plot" },
     { key: "BarBasic", text: "Basic Bar Plot" },
+    { key: "BarHorizontal", text: "Horizontal Bar Plot" },
     { key: "BarStacked", text: "Stacked Bar Plot" },
+    { key: "BarGrouped", text: "Grouped Bar Plot" },
+    { key: "StackedArea", text: "Stacked Area Plot" },
   ];
 
   return (
