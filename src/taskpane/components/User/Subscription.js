@@ -20,11 +20,13 @@ export default function Subscription() {
   
   if (auth && auth.isFreePlan) {
     plan = "Free Plan"
-  } else if (auth && auth.isSoloPlan) {
+  } else if (auth && auth.subscription.nickname === 'Solo') {
     plan = "Solo Plan"
-  } else if (auth && auth.isTeamPlan) {
+  } else if (auth && auth.subscription.nickname === 'Team') {
     plan = "Team Plan"
-  } else {
+  } else if (auth && auth.subscription.nickname === 'Enterprise') {
+    plan = "Enterprise Plan"
+  }else {
     plan = "No current subsciption"
   }
 
