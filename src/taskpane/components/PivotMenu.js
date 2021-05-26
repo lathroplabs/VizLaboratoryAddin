@@ -27,11 +27,8 @@ export default function PivotMenu() {
     <div>
       <Pivot>
         <PivotItem
+          itemKey="0"
           headerText="User"
-          headerButtonProps={{
-            "data-order": 1,
-            "data-title": "User"
-          }}
         >
           <div className="pivot-head">
             <Label>User Info</Label>
@@ -40,6 +37,7 @@ export default function PivotMenu() {
           <User setLoggedIn={setLoggedIn} />
         </PivotItem>
         <PivotItem
+          itemKey="1"
           headerText="Create"
           headerButtonProps={{
             disabled: !loggedIn
@@ -52,6 +50,7 @@ export default function PivotMenu() {
           <CreateChart />
         </PivotItem>
         <PivotItem
+          itemKey="2"
           headerText="View"
           headerButtonProps={{
             disabled: !loggedIn

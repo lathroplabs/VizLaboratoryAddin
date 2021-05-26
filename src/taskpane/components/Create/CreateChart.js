@@ -69,6 +69,7 @@ export default function CreateChartButton() {
     }
   
     setChartFig(fig)
+
   }
 }
 
