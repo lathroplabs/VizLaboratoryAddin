@@ -56,11 +56,7 @@ export default function CreateChartButton() {
     
     const trace = chartTemplate.trace
     const df = await selectionToDF()
-    let horizontalChart = false
-    if (trace.orientation) {
-      trace.orientation === 'h' ? horizontalChart = true : null
-    }
-    const data = getTraces(df, trace, horizontalChart)
+    const data = getTraces(df, trace)
     
     const fig = {
       data: data,

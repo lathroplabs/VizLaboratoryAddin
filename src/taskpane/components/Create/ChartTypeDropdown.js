@@ -21,7 +21,7 @@ export default function ChartTypeDropdown({setChartTemplate}) {
     "BasicPie": basicPie,
     "Donut": donut,
     "BoxPlot": basicBoxPlot,
-    "BoxPlotWithData": boxPlotWithData
+    "BoxPlotWithData": boxPlotWithData,
   };
 
   const chartTypeOptions = [

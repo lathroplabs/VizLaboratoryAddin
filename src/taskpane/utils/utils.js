@@ -1,3 +1,5 @@
+import { horizontalBoxPlot } from "../chartConfigs/box";
+
 export function arrayToJSONObject(arr) {
   // assume header
   let keys = arr[0];
@@ -65,7 +67,7 @@ export function getTraces(df, traceTemplate) {
       if (horizontalChart) {
         trace = horizontalTrace(traceTemplate, x, y, col);
       } else if (boxChart) {
-        trace = boxTrace(traceTemplate, y, col);
+        trace = yTrace(traceTemplate, y, col);
       } else {
         trace = standardTrace(traceTemplate, x, y, col);
       }
@@ -93,10 +95,18 @@ function horizontalTrace(template, x, y, name) {
   }
 }
 
-function boxTrace(template, y, name) {
+function yTrace(template, y, name) {
   return {
     ...template,
     y: y,
+    name: name,
+  }
+}
+
+function xTrace(template, x, name) {
+  return {
+    ...template,
+    x: x,
     name: name,
   }
 }
