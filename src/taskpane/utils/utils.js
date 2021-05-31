@@ -47,19 +47,25 @@ export function getTraces(df, traceTemplate) {
   if (traceTemplate.type === 'pie') {
     pieChart = true
   }
+  let boxChart = false
+  if (traceTemplate.type === 'box') {
+    boxChart = true
+  }
   
   const x = df.iloc({ columns: ["0"] }).data.flat();
   const cols = df.columns.slice(1);
   let traces = [];
   if (pieChart) {
     const y = df.iloc({rows: [0]}).data.flat().slice(1);
-    traces = pieTrace(traceTemplate, x, y, cols);
+    traces = pieTrace(traceTemplate, y, cols);
   } else {
     cols.forEach((col) => {
       const y = df.loc({ columns: [col] }).data.flat();
       let trace
       if (horizontalChart) {
         trace = horizontalTrace(traceTemplate, x, y, col);
+      } else if (boxChart) {
+        trace = boxTrace(traceTemplate, y, col);
       } else {
         trace = standardTrace(traceTemplate, x, y, col);
       }
@@ -87,7 +93,15 @@ function horizontalTrace(template, x, y, name) {
   }
 }
 
-function pieTrace(template, x, y, labels) {
+function boxTrace(template, y, name) {
+  return {
+    ...template,
+    y: y,
+    name: name,
+  }
+}
+
+function pieTrace(template, y, labels) {
   return [{
     ...template,
     labels: labels,

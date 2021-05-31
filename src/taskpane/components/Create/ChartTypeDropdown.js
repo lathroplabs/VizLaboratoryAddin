@@ -5,6 +5,7 @@ import { lineBasic } from "../../chartConfigs/line";
 import { barBasic, barHorizontal, barStacked, barGrouped } from "../../chartConfigs/bar";
 import { stackedArea } from "../../chartConfigs/area";
 import { basicPie, donut } from "../../chartConfigs/pie";
+import { basicBoxPlot, boxPlotWithData } from "../../chartConfigs/box";
 
 
 export default function ChartTypeDropdown({setChartTemplate}) {
@@ -18,7 +19,9 @@ export default function ChartTypeDropdown({setChartTemplate}) {
     "BarGrouped": barGrouped,
     "StackedArea": stackedArea,
     "BasicPie": basicPie,
-    "Donut": donut
+    "Donut": donut,
+    "BoxPlot": basicBoxPlot,
+    "BoxPlotWithData": boxPlotWithData
   };
 
   const chartTypeOptions = [
@@ -31,6 +34,8 @@ export default function ChartTypeDropdown({setChartTemplate}) {
     { key: "StackedArea", text: "Stacked Area Plot" },
     { key: "BasicPie", text: "Basic Pie Chart" },
     { key: "Donut", text: "Donut Chart" },
+    { key: "BoxPlot", text: "Basic Box Plot" },
+    { key: "BoxPlotWithData", text: "Box Plot With Data" },
   ];
 
   return (
