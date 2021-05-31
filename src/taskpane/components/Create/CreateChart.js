@@ -11,10 +11,10 @@ export default function CreateChartButton() {
   let layout = { 
     title: 'Chart Title',
     xaxis: {
-      title: 'month'
+      title: ''
     },
     yaxis: {
-      title: 'count'
+      title: ''
     },
     font: {size: 16}
   };
@@ -61,7 +61,7 @@ export default function CreateChartButton() {
       trace.orientation === 'h' ? horizontalChart = true : null
     }
     const data = getTraces(df, trace, horizontalChart)
-  
+    
     const fig = {
       data: data,
       layout: layout,

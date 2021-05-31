@@ -3,7 +3,8 @@ import { Dropdown } from "office-ui-fabric-react/lib/Dropdown";
 import { scatterBasic } from "../../chartConfigs/scatter";
 import { lineBasic } from "../../chartConfigs/line";
 import { barBasic, barHorizontal, barStacked, barGrouped } from "../../chartConfigs/bar";
-import { stackedArea } from "../../chartConfigs//area";
+import { stackedArea } from "../../chartConfigs/area";
+import { basicPie, donut } from "../../chartConfigs/pie";
 
 
 export default function ChartTypeDropdown({setChartTemplate}) {
@@ -15,7 +16,9 @@ export default function ChartTypeDropdown({setChartTemplate}) {
     "BarHorizontal": barHorizontal,
     "BarStacked": barStacked,
     "BarGrouped": barGrouped,
-    "StackedArea": stackedArea
+    "StackedArea": stackedArea,
+    "BasicPie": basicPie,
+    "Donut": donut
   };
 
   const chartTypeOptions = [
@@ -26,6 +29,8 @@ export default function ChartTypeDropdown({setChartTemplate}) {
     { key: "BarStacked", text: "Stacked Bar Plot" },
     { key: "BarGrouped", text: "Grouped Bar Plot" },
     { key: "StackedArea", text: "Stacked Area Plot" },
+    { key: "BasicPie", text: "Basic Pie Chart" },
+    { key: "Donut", text: "Donut Chart" },
   ];
 
   return (

@@ -20,37 +20,78 @@ export function arrayToJSONObject(arr) {
 
 export async function selectionToDF() {
   try {
-    let df
-    await Excel.run(async context => {
+    let df;
+    await Excel.run(async (context) => {
       var range = context.workbook.getSelectedRange();
       range.load("values");
       await context.sync();
-      const chartData = range.values
+      const chartData = range.values;
       const jsonData = arrayToJSONObject(chartData);
       df = new dfd.DataFrame(jsonData);
     });
-    
-    return df
+
+    return df;
   } catch (error) {
-    console.log('Error', error)
+    console.log("Error", error);
   }
 }
 
-export function getTraces(df, traceTemplate, horizontal=false) {
-  const x = df.iloc({columns: ["0"]}).data.flat()
-  const cols = df.columns.slice(1)
-  let traces = []
-  cols.forEach(col => {
-  const y = df.loc({columns: [col]}).data.flat()
-  //TODO add a flag to transpose data for horizontal charts
-  const trace = {
-    ...traceTemplate,
-    y: horizontal ? x : y,
-    x: horizontal ? y : x,
-    name: col
+export function getTraces(df, traceTemplate) {
+  // check to see if this is a horizontal chart
+  let horizontalChart
+  if (traceTemplate.orientation) {
+    traceTemplate.orientation === 'h' ? horizontalChart = true : horizontalChart = false
   }
-  traces.push(trace)
-})
+  // check to see if this is a pie chart
+  let pieChart = false
+  if (traceTemplate.type === 'pie') {
+    pieChart = true
+  }
+  
+  const x = df.iloc({ columns: ["0"] }).data.flat();
+  const cols = df.columns.slice(1);
+  let traces = [];
+  if (pieChart) {
+    const y = df.iloc({rows: [0]}).data.flat().slice(1);
+    traces = pieTrace(traceTemplate, x, y, cols);
+  } else {
+    cols.forEach((col) => {
+      const y = df.loc({ columns: [col] }).data.flat();
+      let trace
+      if (horizontalChart) {
+        trace = horizontalTrace(traceTemplate, x, y, col);
+      } else {
+        trace = standardTrace(traceTemplate, x, y, col);
+      }
+      traces.push(trace);
+    });
+  }
+  return traces;
+}
 
-return traces
+function standardTrace(template, x, y, name) {
+  return {
+    ...template,
+    y: y,
+    x: x,
+    name: name,
+  }
+}
+
+function horizontalTrace(template, x, y, name) {
+  return {
+    ...template,
+    y: x,
+    x: y,
+    name: name,
+  }
+}
+
+function pieTrace(template, x, y, labels) {
+  return [{
+    ...template,
+    labels: labels,
+    values: y
+  }]
+
 }
