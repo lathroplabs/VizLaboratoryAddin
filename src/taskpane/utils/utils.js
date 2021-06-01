@@ -1,4 +1,3 @@
-import { horizontalBoxPlot } from "../chartConfigs/box";
 
 export function arrayToJSONObject(arr) {
   // assume header
@@ -34,7 +33,7 @@ export async function selectionToDF() {
 
     return df;
   } catch (error) {
-    console.log("Error", error);
+    return null;
   }
 }
 
