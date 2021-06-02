@@ -21,10 +21,7 @@ export default function HomeHelpPanel() {
         <p>The User tab contains the Login/Logout function and information about the current user. </p>
         <h2>Login/Logout</h2>
         <p>Before you can use the Machine Learning Laboratory you must sign up for an account at 
-        <a href="https://www.predictionlaboratory.com/signup"> the Prediction Laboratory website.</a> 
-        </p>
-        <p>
-          If you are not signed in, the Create, Select, Train, and Predict tabs are not active.
+        <a href="https://predictionlaboratory.com/signup"> the Prediction Laboratory website.</a> 
         </p>
       </Panel>
     </div>
