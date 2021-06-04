@@ -22,11 +22,11 @@ export default function CreateChartButton() {
     font: {size: 16}
   };
 
-  const config = {
-    plotlyServerURL: "https://chart-studio.plotly.com",
+  var config = {
+    //showEditInChartStudio: true,
+    plotlyServerURL: 'https://chart-studio.plotly.com',
     responsive: true,
     modeBarButtonsToRemove: ['toImage'],
-    showEditInChartStudio: true,
   };
 
   return (
@@ -95,7 +95,7 @@ export default function CreateChartButton() {
     
     const trace = chartTemplate.trace
     const df = await selectionToDF()
-    console.log('df', df.data[0].length)
+    
     if (!df || df.data[0].length < 2) {
       setDataSelectedError(true)
       return
@@ -107,6 +107,7 @@ export default function CreateChartButton() {
       layout: layout,
       config: config
     }
+    
   
     setChartFig(fig)
     setChartCreated(true)

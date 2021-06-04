@@ -6,7 +6,7 @@ export default function ViewChart() {
 
   useEffect(() => {
     if (chartFig) {
-      Plotly.plot("view-test", chartFig )
+      Plotly.newPlot("view-test", chartFig )
     }
   }, [chartFig]);
 
