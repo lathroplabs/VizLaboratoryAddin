@@ -13,7 +13,7 @@ export default function App() {
       <AuthProvider>
         <ChartFigProvider>
           <div>
-            <Header logo="assets/viztext.png" title="" message=" " />
+            <Header logo="/assets/viztext.png" title="" message=" " />
             <PivotMenu />
           </div>
         </ChartFigProvider>
