@@ -35,7 +35,7 @@ export default function Subscription() {
       <div id="current-model-name"></div>
       <hr></hr>
       {user && <Label>Current Subscription: {plan} </Label>}
-      {user && <a href="https://predictionlaboratory.com/signup">Upgrade your account</a>}
+      {user && <a target="_blank" rel="noopener noreferrer" href="https://predictionlaboratory.com/signup">Upgrade your account</a>}
     </div>
   )
 }
