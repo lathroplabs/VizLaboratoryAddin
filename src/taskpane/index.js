@@ -22,13 +22,13 @@ const render = (Component) => {
 };
 
 /* Render application after Office initializes */
-Office.initialize = () => {
+Office.onReady(() => {
   isOfficeInitialized = true;
   render(App);
-};
+});
 
 /* Initial render showing a progress bar */
-render(App);
+//render(App);
 
 if (module.hot) {
   module.hot.accept("./components/App", () => {
